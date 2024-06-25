@@ -1,48 +1,45 @@
 #!/usr/bin/env python3
 
-"""
-Concatenates a number of input files into a single output file, while
-performing the following regex substitutions:
-
-[[pagebreak]]
-[[manbreak]]
-[[book-pagebreak]]
-
-[nobr[s]]   # Substitute spaces with `\ ` to mark as nonbreaking
-            # Doesn't work inside code markdown, alas
-
-[nh[x]] \hyphenation{x}   # no hyphen, no underscores allowed
-[ix[x]] \index{x}         # index straight up
-[ixtt[x]] \index{x@\texttt{x}}         # index tt
-
-fl = footnote link
-flx = footnote link to example https://beej.us/guide/bgnet/examples/file
-flr = footnote link to redirect https://beej.us/guide/url/id
-
-[fl[link|url]] [link](url)^[url]
-[flw[link|url]] [link](https://en.wikipedia.org/wiki/url)^[https://en.wikipedia.org/wiki/url]
-[flx[link|file]] [link](https://beej.us/guide/bgnet/examples/file)^[https://beej.us/guide/bgnet/examples/file]
-[flr[link|id]] [link](https://beej.us/guide/url/id)^[https://beej.us/guide/url/id]
-[flrfc[link|num]] [link](https://tools.ietf.org/html/rfcnum)^[https://tools.ietf.org/html/rfcnum]
-
-
-[i[entry]]
-[i[entry]flags]
-
-flags for page number: i: italic, b: bold, <: open range >: close range
-flags for replacement: T: typewriter, I: italic, B: bold, or a combination.
-
-[is[Foobar==>see `foo`]]   Index see-also
-
-Backticks can delimit typewriter text:
-
-[i[`\n` newline]]
-
-entry can have subentries: "entry-->subentry"
-
-Also puts a blank line between files.
-
-"""
+# Concatenates a number of input files into a single output file, while
+# performing the following regex substitutions:
+#
+# [[pagebreak]]
+# [[manbreak]]
+# [[book-pagebreak]]
+#
+# [nobr[s]]   # Substitute spaces with `\ ` to mark as nonbreaking
+#             # Doesn't work inside code markdown, alas
+#
+# [nh[x]] \hyphenation{x}   # no hyphen, no underscores allowed
+# [ix[x]] \index{x}         # index straight up
+# [ixtt[x]] \index{x@\texttt{x}}         # index tt
+#
+# fl = footnote link
+# flx = footnote link to example https://beej.us/guide/bgnet/examples/file
+# flr = footnote link to redirect https://beej.us/guide/url/id
+#
+# [fl[link|url]] [link](url)^[url]
+# [flw[link|url]] [link](https://en.wikipedia.org/wiki/url)^[https://en.wikipedia.org/wiki/url]
+# [flx[link|file]] [link](https://beej.us/guide/bgnet/examples/file)^[https://beej.us/guide/bgnet/examples/file]
+# [flr[link|id]] [link](https://beej.us/guide/url/id)^[https://beej.us/guide/url/id]
+# [flrfc[link|num]] [link](https://tools.ietf.org/html/rfcnum)^[https://tools.ietf.org/html/rfcnum]
+#
+#
+# [i[entry]]
+# [i[entry]flags]
+#
+# flags for page number: i: italic, b: bold, <: open range >: close range
+# flags for replacement: T: typewriter, I: italic, B: bold, or a combination.
+#
+# [is[Foobar==>see `foo`]]   Index see-also
+#
+# Backticks can delimit typewriter text:
+#
+# [i[`\n` newline]]
+#
+# entry can have subentries: "entry-->subentry"
+#
+# Also puts a blank line between files.
 
 import sys
 import re

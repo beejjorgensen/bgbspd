@@ -1,9 +1,9 @@
-TITLE="Beej's Guide to Network Concepts"
-SUBTITLE=""
-AUTHOR='Brian “Beej Jorgensen” Hall'
-VERSION_DATE="v1.0.21, Copyright © March 4, 2024"
+#TITLE="Beej's Guide to Network Concepts"
+#SUBTITLE=""
+#AUTHOR='Brian “Beej Jorgensen” Hall'
+#VERSION_DATE="v1.0.21, Copyright © March 4, 2024"
 
-GUIDE_ID=bgnet0
+#GUIDE_ID=bgnet0
 
 PDF_MAINFONT="Liberation Serif"
 PDF_SANSFONT="Liberation Sans"
@@ -22,10 +22,10 @@ HTML=$(GUIDE_ID).html $(GUIDE_ID)-wide.html
 SPLIT_DIRS=split split-wide
 GUIDE_MD=$(sort $(wildcard $(GUIDE_ID)_part_*.md))
 
-PREPROC=../bin/preproc
+PREPROC=$(BGBSPD_BUILD_DIR)/bin/preproc
 PREPROC_MD=$(GUIDE_ID)_temp_preproc.md
 
-SPLIT=../bin/bgsplit.py
+SPLIT=$(BGBSPD_BUILD_DIR)/bin/bgsplit.py
 
 COMMON_OPTS= \
 	--variable title:$(TITLE) \
@@ -69,10 +69,10 @@ COLOR=--highlight-style=tango   # color options
 
 all: $(HTML) split/index.html split-wide/index.html $(BOOKS)
 
-bg-css.html: common-css-src.html
+bg-css.html: $(BGBSPD_BUILD_DIR)/html/common-css-src.html
 	cat $^ > $@
 
-bg-css-wide.html: common-css-src.html widescreen-css-src.html
+bg-css-wide.html: $(BGBSPD_BUILD_DIR)/html/common-css-src.html $(BGBSPD_BUILD_DIR)/html/widescreen-css-src.html
 	cat $^ > $@
 
 $(GUIDE_ID).html: $(GUIDE_MD) bg-css.html
