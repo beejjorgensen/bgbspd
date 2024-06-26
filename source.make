@@ -37,9 +37,9 @@ COMMON_OPTS= \
 	--wrap=none
 
 PDF_OPTS= \
-	-H latex/header_index.latex \
-	-H latex/header_bullets.latex \
-	-A latex/after_index.latex \
+	-H $(BGBSPD_BUILD_DIR)/latex/header_index.latex \
+	-H $(BGBSPD_BUILD_DIR)/latex/header_bullets.latex \
+	-A $(BGBSPD_BUILD_DIR)/latex/after_index.latex \
 	--pdf-engine=xelatex \
 	--variable mainfont=$(PDF_MAINFONT) \
 	--variable sansfont=$(PDF_SANSFONT) \
@@ -48,7 +48,7 @@ PDF_OPTS= \
 	-V documentclass=book \
 	-o $(GUIDE_ID)_temp.tex \
 	$(COMMON_OPTS)
-	# -H latex/header_codebox.latex \
+	# -H $(BGBSPD_BUILD_DIR)/latex/header_codebox.latex \
 	#-V indent \
 
 HTML_OPTS=$(COMMON_OPTS) \
@@ -63,7 +63,7 @@ CROWNQUARTO=--variable geometry:"paperwidth=7.444in,paperheight=9.681in,top=1in,
 CROWNQUARTO_AMAZON=--variable geometry:"paperwidth=7.444in,paperheight=9.681in,top=1in,bottom=1in,left=1.25in,right=1.25in" # Amazon
 #SIZE_75x925_AMAZON=--variable geometry:"paperwidth=7.5in,paperheight=9.25in,top=1in,bottom=1in,left=1.125in,right=1.375in" # Amazon 7.5" x 9.25", margins too far inside
 SIZE_75x925_AMAZON=--variable geometry:"paperwidth=7.5in,paperheight=9.25in,top=1in,bottom=1in,left=1.25in,right=1.25in" # Amazon 7.5" x 9.25"
-BLANKLAST=-A latex/after_blank.latex # add a blank last page
+BLANKLAST=-A $(BGBSPD_BUILD_DIR)/latex/after_blank.latex # add a blank last page
 BW=--no-highlight  # black and white options
 COLOR=--highlight-style=tango   # color options
 
