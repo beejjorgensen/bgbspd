@@ -93,9 +93,15 @@ $(GUIDE_ID)-wide.html: $(GUIDE_MD) bg-css-wide.html
 
 split/index.html: $(GUIDE_ID).html
 	$(SPLIT) $< split
+ifdef WEB_IMAGES
+	cp -v $(WEB_IMAGES) split
+endif
 
 split-wide/index.html: $(GUIDE_ID)-wide.html
 	$(SPLIT) $< split-wide
+ifdef WEB_IMAGES
+	cp -v $(WEB_IMAGES) split-wide
+endif
 
 $(GUIDE_ID).epub: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_epub.md
