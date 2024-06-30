@@ -1,3 +1,0 @@
-\usepackage{tcolorbox}
-\tcbuselibrary{breakable}
-\tcbuselibrary{skins}
