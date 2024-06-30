@@ -42,6 +42,7 @@ PDF_OPTS= \
 	-H $(BGBSPD_BUILD_DIR)/latex/header_index.latex \
 	-H $(BGBSPD_BUILD_DIR)/latex/header_bullets.latex \
 	-H $(BGBSPD_BUILD_DIR)/latex/header_codeborder.latex \
+	-H $(BGBSPD_BUILD_DIR)/latex/header_blockquote.latex \
 	-A $(BGBSPD_BUILD_DIR)/latex/after_index.latex \
 	--pdf-engine=xelatex \
 	--variable mainfont=$(PDF_MAINFONT) \
@@ -49,7 +50,7 @@ PDF_OPTS= \
 	--variable monofont=$(PDF_MONOFONT) \
 	--variable geometry:"top=1in,bottom=1in" \
 	-V documentclass=book \
-    --lua-filter $(BGBSPD_BUILD_DIR)/lua/codeborder.lua \
+    --lua-filter $(BGBSPD_BUILD_DIR)/lua/latex_filters.lua \
 	$(COMMON_OPTS)
     #	-o $(GUIDE_ID)_temp.tex \
 	# -H $(BGBSPD_BUILD_DIR)/latex/header_codebox.latex \
@@ -124,7 +125,7 @@ $(GUIDE_ID)_usl_c_1.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_usl_c_1.tex
 	xelatex $(TEMP_PREFIX)_usl_c_1.tex
 	mv $(TEMP_PREFIX)_usl_c_1.pdf $@
-	rm -f $(TEMP_PREFIX)*_usl_c_1.* texput.log
+	#rm -f $(TEMP_PREFIX)*_usl_c_1.* texput.log
 
 $(GUIDE_ID)_usl_c_2.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_usl_c_2.md

@@ -1,0 +1,5 @@
+\newlength{\defaultparskip}
+\setlength{\defaultparskip}{\parskip}
+
+\renewenvironment{quote}{\list{}{\rightmargin=0pt\leftmargin=0pt\parsep\defaultparskip}\item\relax}{\endlist}
+
