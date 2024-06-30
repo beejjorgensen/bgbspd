@@ -73,4 +73,21 @@ figcaption {
     font-style: italic;
     margin-top: 0.6em;
 }
+
+body {
+    counter-reset: figure-counter-major;
+    counter-reset: figure-counter-minor;
+}
+
+figure {
+    counter-increment: figure-counter-minor;
+}
+
+figcaption::before {
+    content: "Figure " counter(figure-counter-major) "." counter(figure-counter-minor) ": ";
+}
+
+h1 {
+    counter-increment: figure-counter-major;
+}
 </style>
