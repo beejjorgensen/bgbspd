@@ -39,10 +39,7 @@ COMMON_OPTS= \
 	--wrap=none
 
 PDF_OPTS= \
-	-H $(BGBSPD_BUILD_DIR)/latex/header_index.latex \
-	-H $(BGBSPD_BUILD_DIR)/latex/header_bullets.latex \
-	-H $(BGBSPD_BUILD_DIR)/latex/header_codeborder.latex \
-	-H $(BGBSPD_BUILD_DIR)/latex/header_blockquote.latex \
+	-H $(BGBSPD_BUILD_DIR)/latex/header_general.latex \
 	-A $(BGBSPD_BUILD_DIR)/latex/after_index.latex \
 	--pdf-engine=xelatex \
 	--variable mainfont=$(PDF_MAINFONT) \

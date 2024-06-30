@@ -1,0 +1,66 @@
+%-------------------------------------------------------------
+% Create the index
+%-------------------------------------------------------------
+\usepackage{makeidx}
+\makeindex
+
+%-------------------------------------------------------------
+% Fix TOC section number spacing
+%-------------------------------------------------------------
+\usepackage{tocloft}
+\setlength{\cftsecnumwidth}{3em}
+%\setlength\cftsubsecnumwidth{3em}
+
+%-------------------------------------------------------------
+% Less dense tables in LaTeX
+%-------------------------------------------------------------
+%\def\arraystretch{1.5}
+
+%-------------------------------------------------------------
+% Make chapter headings mixed case
+%-------------------------------------------------------------
+% https://tex.stackexchange.com/questions/78550/how-to-modify-the-headers-of-this-book-to-lower-case
+\usepackage{regexpatch}% http://ctan.org/pkg/regexpatch
+\makeatletter
+% \*patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+\xpatchcmd{\chaptermark}{\MakeUppercase}{}{}{}%
+\xpatchcmd{\sectionmark}{\MakeUppercase}{}{}{}%
+\xpatchcmd*{\tableofcontents}{\MakeUppercase}{}{}{}%
+
+%-------------------------------------------------------------
+% Fix bullets
+%-------------------------------------------------------------
+\makeatother\usepackage{enumitem}
+\setlistdepth{20}
+\renewlist{itemize}{itemize}{20}
+\renewlist{enumerate}{enumerate}{20}
+\setlist[itemize]{label=\textbullet}
+% \setlist[itemize]{label=$\cdot$}
+% \setlist[itemize,1]{label=\textbullet}
+% \setlist[itemize,2]{label=--}
+% \setlist[itemize,3]{label=*}
+
+%-------------------------------------------------------------
+% Color box support
+%-------------------------------------------------------------
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+%-------------------------------------------------------------
+% Add line breaks back into blockquotes
+%-------------------------------------------------------------
+\newlength{\defaultparskip}
+\setlength{\defaultparskip}{\parskip}
+
+\renewenvironment{quote}{\list{}{\rightmargin=0pt\leftmargin=0pt\parsep\defaultparskip}\item\relax}{\endlist}
+
+%-------------------------------------------------------------
+% Gray BG on inline code
+%-------------------------------------------------------------
+\usepackage{soul}
+\usepackage{xcolor}
+
+\definecolor{codecolor}{rgb}{0.8,0.8,0.8}
+\sethlcolor{codecolor}
+
