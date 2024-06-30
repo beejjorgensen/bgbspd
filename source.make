@@ -122,7 +122,7 @@ $(GUIDE_ID)_usl_c_1.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_usl_c_1.tex
 	xelatex $(TEMP_PREFIX)_usl_c_1.tex
 	mv $(TEMP_PREFIX)_usl_c_1.pdf $@
-	#rm -f $(TEMP_PREFIX)*_usl_c_1.* texput.log
+	rm -f $(TEMP_PREFIX)*_usl_c_1.* texput.log
 
 $(GUIDE_ID)_usl_c_2.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_usl_c_2.md
