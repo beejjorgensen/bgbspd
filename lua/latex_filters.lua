@@ -16,8 +16,3 @@ function BlockQuote (bq)
     }
 end
 
---- \NewTotalTCBox{\myverb}{ O{red} v !O{} }
---- { fontupper=\ttfamily,nobeforeafter,tcbox raise base,arc=0pt,outer arc=0pt,
---- top=0pt,bottom=0pt,left=0mm,right=0mm,
---- leftrule=0pt,rightrule=0pt,toprule=0.3mm,bottomrule=0.3mm,boxsep=0.5mm,
---- colback=#1!10!white,colframe=#1!50!black,#3}{#2}
