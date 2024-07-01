@@ -52,7 +52,7 @@ def get_section_id_from_tag(tag, attrs):
             return "title_contents"
 
     # Start of Footnotes page
-    elif tag.lower() == "section":
+    elif tag.lower() == "aside":
         if attr_equals(attrs, "id", "footnotes"):
             return "footnotes"
 
