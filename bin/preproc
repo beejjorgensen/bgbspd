@@ -40,6 +40,9 @@
 # entry can have subentries: "entry-->subentry"
 #
 # Also puts a blank line between files.
+#
+# Also searches for "Figure_#" and replaces the pound sign with the
+# chapter number and the underscore with a space.
 
 import sys
 import re
@@ -271,6 +274,7 @@ def main():
     in_fence = False
     this_line_fence = False
     number_lines = False
+    chapter_num = 0
 
     # Go through a line at a time indenting if we're in unnumbered fenced code
     for line in filedata.splitlines(True):
@@ -283,6 +287,15 @@ def main():
 
         #if in_fence and not this_line_fence and not number_lines:
         #    fout.write("    ")   # indent
+
+        # Also replace chapter numbers in figures
+        # WARNING: this doesn't obey HTML comments at all.
+
+        if re.search(r'^# ', line):
+            if not re.search(r'^# vim', line):
+                chapter_num += 1
+
+        line = re.sub(r'Figure_#', f'Figure {chapter_num}', line, re.DOTALL)
 
         fout.write(line)
 
