@@ -21,19 +21,13 @@ stage_build:
 	mkdir -p $(STAGEDIR)/source
 
 stage_books:
-	cp -v website/* website/.htaccess $(STAGEDIR)
+	cp -v website/* website/.htaccess $(STAGEDIR) || :
 	cp -v src/$(PACKAGE)*.pdf $(STAGEDIR)/pdf
 	cp -v src/$(PACKAGE).html $(STAGEDIR)/html/index.html
-	cp -v src/$(PACKAGE)-wide.html $(STAGEDIR)/html/index-wide.html
-	cp -v src/*.svg $(STAGEDIR)/html/ 2>/dev/null || :
-	cp -v src/*.png $(STAGEDIR)/html/ 2>/dev/null || :
-	cp -v src/*.jpg $(STAGEDIR)/html/ 2>/dev/null || :
-	cp -v src/*.svg $(STAGEDIR)/html/split/ 2>/dev/null || :
-	cp -v src/*.png $(STAGEDIR)/html/split/ 2>/dev/null || :
-	cp -v src/*.jpg $(STAGEDIR)/html/split/ 2>/dev/null || :
-	cp -v src/*.svg $(STAGEDIR)/html/split-wide/ 2>/dev/null || :
-	cp -v src/*.png $(STAGEDIR)/html/split-wide/ 2>/dev/null || :
-	cp -v src/*.jpg $(STAGEDIR)/html/split-wide/ 2>/dev/null || :
+	cp -v src/$(PACKAGE)-wide.html $(STAGEDIR)/html/index-wide.html || :
+ifdef WEB_IMAGES
+	cp -v $(WEB_IMAGES) $(STAGEDIR)/html/ 2>/dev/null || :
+endif
 
 stage_translations:
 	cp -v translations/*.pdf $(STAGEDIR)/translations 2>/dev/null || : 
@@ -48,9 +42,9 @@ stage_html_zips:
 	( cd $(STAGEDIR)/html; zip -r $(PACKAGE)-wide.zip $(PACKAGE); mv $(PACKAGE)/* split-wide; rmdir $(PACKAGE) )
 
 stage_examples:
-	cp -rv source/* source/.htaccess $(STAGEDIR)/source
+	cp -rv source/* source/.htaccess $(STAGEDIR)/source || :
 	mkdir -p $(BUILDTMP)/$(PACKAGE)_source
-	cp -rv source/* source/.htaccess $(BUILDTMP)/$(PACKAGE)_source
+	cp -rv source/* source/.htaccess $(BUILDTMP)/$(PACKAGE)_source || :
 	( cd $(BUILDTMP); zip -r $(PACKAGE)_source.zip $(PACKAGE)_source )
 	cp -v $(BUILDTMP)/$(PACKAGE)_source.zip $(STAGEDIR)/source
 	rm -rf $(BUILDTMP)
