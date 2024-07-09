@@ -1,4 +1,12 @@
-#PACKAGE=bgnet0
+# Example Makefile that includes this file:
+#
+#    PACKAGE=bggit
+#    BGBSPD_BUILD_DIR?=../bgbspd
+#
+#    WEB_IMAGES=$(wildcard src/*.svg)
+#
+#    include $(BGBSPD_BUILD_DIR)/main.make
+
 UPLOADDIR=beej71@pdx1-shared-a1-06.dreamhost.com:~/beej.us/guide/$(PACKAGE)
 STAGEDIR=./stage
 BUILDTMP=./build_tmp

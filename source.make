@@ -1,9 +1,17 @@
-#TITLE="Beej's Guide to Network Concepts"
-#SUBTITLE=""
-#AUTHOR='Brian “Beej Jorgensen” Hall'
-#VERSION_DATE="v1.0.21, Copyright © March 4, 2024"
-
-#GUIDE_ID=bgnet0
+# Example Makefile that includes this file:
+#
+#    TITLE="Beej's Guide to Git"
+#    SUBTITLE=""
+#    AUTHOR='Brian “Beej Jorgensen” Hall'
+#    VERSION_DATE="v0.0.3, Copyright © July 8, 2024"
+#
+#    GUIDE_ID=bggit
+#    BGBSPD_BUILD_DIR?=../../bgbspd
+#
+#    WEB_IMAGES=$(wildcard img_*svg)
+#
+#    include $(BGBSPD_BUILD_DIR)/source.make
+#
 
 PDF_MAINFONT="Liberation Serif"
 PDF_SANSFONT="Liberation Sans"
