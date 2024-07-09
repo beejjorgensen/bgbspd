@@ -3,10 +3,13 @@ UPLOADDIR=beej71@pdx1-shared-a1-06.dreamhost.com:~/beej.us/guide/$(PACKAGE)
 STAGEDIR=./stage
 BUILDTMP=./build_tmp
 
+BGBS_THREADS?=8
+MAKE_THREADS=-j $(BGBS_THREADS)
+
 .PHONY: all upload fastupload pristine clean
 
 all:
-	$(MAKE) -C src
+	$(MAKE) $(MAKE_THREADS) -C src
 	$(MAKE) -C source clean
 
 .PHONY: stage_build stage stage_html stage_translations stage_html_zips
