@@ -64,3 +64,18 @@
 \definecolor{codecolor}{rgb}{0.8,0.8,0.8}
 \sethlcolor{codecolor}
 
+
+%-------------------------------------------------------------
+% Undefine the Shaded environment by redefining it to do nothing
+%
+% This is a hack to allow page breaks to work in tcolorbox code
+% listings.
+%-------------------------------------------------------------
+\usepackage{xparse}
+
+\makeatletter
+% Check if the environment 'Shaded' is defined and redefine it
+\@ifundefined{Shaded}%
+  {}% Do nothing if 'Shaded' is not defined
+  {\RenewDocumentEnvironment{Shaded}{}{}{}}% Redefine 'Shaded' to do nothing
+\makeatother
