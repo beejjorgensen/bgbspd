@@ -55,9 +55,9 @@ PDF_OPTS= \
 	--variable monofont=$(PDF_MONOFONT) \
 	--variable geometry:"top=1in,bottom=1in" \
 	-V documentclass=book \
-    --lua-filter $(BGBSPD_BUILD_DIR)/lua/latex_filters.lua \
+	--lua-filter $(BGBSPD_BUILD_DIR)/lua/latex_filters.lua \
 	$(COMMON_OPTS)
-    #	-o $(GUIDE_ID)_temp.tex \
+	#	-o $(GUIDE_ID)_temp.tex \
 	# -H $(BGBSPD_BUILD_DIR)/latex/header_codebox.latex \
 	#-V indent \
 
@@ -202,10 +202,10 @@ $(GUIDE_ID)_a4_bw_2.pdf: $(GUIDE_MD)
 	mv $(TEMP_PREFIX)_a4_bw_2.pdf $@
 	rm -f $(TEMP_PREFIX)*_a4_bw_2.* texput.log
 
-$(GUIDE_ID)_lulu.md: $(GUIDE_MD)
+$(TEMP_PREFIX)_lulu.md: $(GUIDE_MD)
 	$(PREPROC) $^ $@
 
-$(GUIDE_ID)_lulu.pdf: $(GUIDE_ID)_lulu.md
+$(GUIDE_ID)_lulu.pdf: $(TEMP_PREFIX)_lulu.md
 	pandoc $(PDF_OPTS) $(TWOSIDE) $(CROWNQUARTO) $(BLANKLAST) $(COLOR) -o $(TEMP_PREFIX)_lulu.tex $<
 	xelatex $(TEMP_PREFIX)_lulu.tex
 	makeindex $(TEMP_PREFIX)_lulu.idx
@@ -214,10 +214,10 @@ $(GUIDE_ID)_lulu.pdf: $(GUIDE_ID)_lulu.md
 	mv $(TEMP_PREFIX)_lulu.pdf $@
 	rm -f $(TEMP_PREFIX)*_lulu.* texput.log
 
-$(GUIDE_ID)_amazon.md: $(GUIDE_MD)
+$(TEMP_PREFIX)_amazon.md: $(GUIDE_MD)
 	$(PREPROC) $^ $@
 
-$(GUIDE_ID)_amazon.pdf: $(GUIDE_ID)_amazon.md
+$(GUIDE_ID)_amazon.pdf: $(TEMP_PREFIX)_amazon.md
 	pandoc $(PDF_OPTS) $(TWOSIDE) $(SIZE_75x925_AMAZON) $(BLANKLAST) $(COLOR) -o $(TEMP_PREFIX)_amazon.tex $<
 	xelatex $(TEMP_PREFIX)_amazon.tex
 	makeindex $(TEMP_PREFIX)_amazon.idx
@@ -232,5 +232,6 @@ clean:
 pristine: clean
 	rm -f $(HTML) $(BOOKS)
 	rm -rf $(SPLIT_DIRS)
+	rm -f $(GUIDE_ID)_lulu.pdf $(GUIDE_ID)_amazon.pdf
 
 .PHONY: all, html, clean, pristine
