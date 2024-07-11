@@ -8,7 +8,7 @@ end
 
 --- Wrap code blocks in tcolorbox environments
 function CodeBlock (cb)
-  return {raw_tex_block '\\begin{tcolorbox}[enhanced jigsaw,breakable,colback=white!97.2549!black,boxrule=0.2mm]', cb, raw_tex_block '\\end{tcolorbox}'}
+  return {raw_tex_block '\\begin{tcolorbox}[enhanced jigsaw,left=17pt,breakable,colback=white!97.2549!black,boxrule=0.2mm]', cb, raw_tex_block '\\end{tcolorbox}'}
 end
 
 --- Add left border on blockquotes
