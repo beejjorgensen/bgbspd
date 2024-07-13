@@ -42,7 +42,9 @@
 # Also puts a blank line between files.
 #
 # Also searches for "Figure_#" and replaces the pound sign with the
-# chapter number and the underscore with a space.
+# chapter number and the underscore with a space. Chapter beginnings
+# must be tagged with <!-- BG_NEW_CHAPTER --> for this to work
+# correctly.
 
 import sys
 import re
@@ -174,6 +176,14 @@ def get_entry_repl(entry, flags=''):
 
     return (entry, repl)
 
+def index_bang_str(entryfull, flags=''):
+    entries = []
+
+    for entry in entryfull.split('-->'):
+            entries.append("".join(get_entry_repl(entry, flags)))
+
+    return "!".join(entries)
+
 def is_replace(m):
     """Index [is[]] tag replacer."""
 
@@ -181,14 +191,12 @@ def is_replace(m):
 
     key, value = entryfull.split('==>')
 
-    key = "".join(get_entry_repl(key))
+    key = index_bang_str(key)
 
     values = value.split()
-    first_word = values[0]
-    value = " ".join(values[1:])
-
-    value = escape(value)
-    value = code_replace(value)
+    first_word = values.pop(0)
+    value = " ".join(values)
+    value = code_replace(escape(value))
 
     result = '\\index{' + key + '|' + first_word + ' {' + value + '}}'
 
@@ -205,12 +213,7 @@ def i_replace(m):
 
     flags = flags if flags is not None else ''
 
-    entries = []
-
-    for entry in entryfull.split('-->'):
-        entries.append("".join(get_entry_repl(entry, flags)))
-
-    result = '\\index{' + "!".join(entries)
+    result = '\\index{' + index_bang_str(entryfull)
 
     if flags != '':
         result += '|'
