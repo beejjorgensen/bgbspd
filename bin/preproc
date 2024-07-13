@@ -289,7 +289,10 @@ def main():
         #    fout.write("    ")   # indent
 
         # Also replace chapter numbers in figures
-        # WARNING: this doesn't obey HTML comments at all.
+        #
+        # For this to work properly, the tag below should be immediately
+        # before or after the start of each chapter, including the first
+        # one.
 
         if re.search(r'<!-- *BG_NEW_CHAPTER *-->', line):
             chapter_num += 1
