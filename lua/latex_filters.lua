@@ -14,7 +14,8 @@ end
 --- Add left border on blockquotes
 function BlockQuote (bq)
     return {
-        raw_tex_block '\\begin{tcolorbox}[enhanced jigsaw,breakable,drop shadow,breakable,arc=0pt,outer arc=0pt,grow to left by=-1cm,enlarge top by=0.1cm,enlarge bottom by=0.1cm,boxrule=0.2mm]',
+        --- raw_tex_block '\\begin{tcolorbox}[enhanced jigsaw,breakable,drop shadow,breakable,arc=0pt,outer arc=0pt,grow to left by=-1cm,enlarge top by=0.1cm,enlarge bottom by=0.1cm,boxrule=0.2mm]',
+        raw_tex_block '\\begin{tcolorbox}[blanker,colback=white,enhanced jigsaw,breakable,arc=0pt,outer arc=0pt,grow to left by=-1cm,enlarge top by=0.1cm,enlarge bottom by=0.1cm,borderline west={1.5pt}{-.3cm}{black}]',
         bq,
         raw_tex_block '\\end{tcolorbox}'
     }
