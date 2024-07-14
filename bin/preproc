@@ -238,6 +238,7 @@ def cat_files(infiles):
 
     for infile in infiles:
         fin = open(infile)
+        filedata.append("<!-- BG_NEW_CHAPTER -->\n")
         filedata.append(fin.read())
         filedata.append("\n")  # Put a blank in there in case there's no trailing newline
         fin.close()
@@ -293,9 +294,8 @@ def main():
 
         # Also replace chapter numbers in figures
         #
-        # For this to work properly, the tag below should be immediately
-        # before or after the start of each chapter, including the first
-        # one.
+        # If you have a chapter start that is not in its own file, you
+        # must tag it with <!-- BG_NEW_CHAPTER -->!
 
         if re.search(r'<!-- *BG_NEW_CHAPTER *-->', line):
             chapter_num += 1
