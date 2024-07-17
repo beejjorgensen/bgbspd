@@ -90,14 +90,14 @@ $(GUIDE_ID).html: $(GUIDE_MD) bg-css.html
 	pandoc $(HTML_OPTS) -s $(PREPROC_TEMP_PREFIX)_html.md -o $@ -H bg-css.html
 	sed 's/src="\(.*\)\.pdf"/src="\1.svg"/g' $@ > $(TEMP_PREFIX)_html.html # use svg images
 	mv $(TEMP_PREFIX)_html.html $@
-	rm -f $(TEMP_PREFIX)*_html.* texput.log
+	#rm -f $(TEMP_PREFIX)*_html.* texput.log
 
 $(GUIDE_ID)-wide.html: $(GUIDE_MD) bg-css-wide.html
 	$(PREPROC) $(GUIDE_MD) $(PREPROC_TEMP_PREFIX)_html_wide.md
 	pandoc $(HTML_OPTS) -s $(PREPROC_TEMP_PREFIX)_html_wide.md -o $@ -H bg-css-wide.html
 	sed 's/src="\(.*\)\.pdf"/src="\1.svg"/g' $@ > $(TEMP_PREFIX)_html_wide.html # use svg images
 	mv $(TEMP_PREFIX)_html_wide.html $@
-	rm -f $(TEMP_PREFIX)*_html_wide.* texput.log
+	#rm -f $(TEMP_PREFIX)*_html_wide.* texput.log
 
 split/index.html: $(GUIDE_ID).html
 	$(SPLIT) $< split
@@ -120,7 +120,7 @@ $(GUIDE_ID)_quick.pdf: $(GUIDE_MD)
 	pandoc $(PDF_OPTS) $(USLETTER) $(ONESIDE) $(COLOR) -o $(TEMP_PREFIX)_quick.tex $(PREPROC_TEMP_PREFIX)_quick.md
 	xelatex $(TEMP_PREFIX)_quick.tex
 	mv $(TEMP_PREFIX)_quick.pdf $@
-	rm -f $(TEMP_PREFIX)*_quick.* texput.log
+	#rm -f $(TEMP_PREFIX)*_quick.* texput.log
 
 $(GUIDE_ID)_usl_c_1.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_usl_c_1.md
@@ -130,7 +130,7 @@ $(GUIDE_ID)_usl_c_1.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_usl_c_1.tex
 	xelatex $(TEMP_PREFIX)_usl_c_1.tex
 	mv $(TEMP_PREFIX)_usl_c_1.pdf $@
-	rm -f $(TEMP_PREFIX)*_usl_c_1.* texput.log
+	#rm -f $(TEMP_PREFIX)*_usl_c_1.* texput.log
 
 $(GUIDE_ID)_usl_c_2.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_usl_c_2.md
@@ -140,7 +140,7 @@ $(GUIDE_ID)_usl_c_2.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_usl_c_2.tex
 	xelatex $(TEMP_PREFIX)_usl_c_2.tex
 	mv $(TEMP_PREFIX)_usl_c_2.pdf $@
-	rm -f $(TEMP_PREFIX)*_usl_c_2.* texput.log
+	#rm -f $(TEMP_PREFIX)*_usl_c_2.* texput.log
 
 $(GUIDE_ID)_a4_c_1.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_a4_c_1.md
@@ -150,7 +150,7 @@ $(GUIDE_ID)_a4_c_1.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_a4_c_1.tex
 	xelatex $(TEMP_PREFIX)_a4_c_1.tex
 	mv $(TEMP_PREFIX)_a4_c_1.pdf $@
-	rm -f $(TEMP_PREFIX)*_a4_c_1.* texput.log
+	#rm -f $(TEMP_PREFIX)*_a4_c_1.* texput.log
 
 $(GUIDE_ID)_a4_c_2.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_a4_c_2.md
@@ -160,7 +160,7 @@ $(GUIDE_ID)_a4_c_2.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_a4_c_2.tex
 	xelatex $(TEMP_PREFIX)_a4_c_2.tex
 	mv $(TEMP_PREFIX)_a4_c_2.pdf $@
-	rm -f $(TEMP_PREFIX)*_a4_c_2.* texput.log
+	#rm -f $(TEMP_PREFIX)*_a4_c_2.* texput.log
 
 $(GUIDE_ID)_usl_bw_1.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_usl_bw_1.md
@@ -170,7 +170,7 @@ $(GUIDE_ID)_usl_bw_1.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_usl_bw_1.tex
 	xelatex $(TEMP_PREFIX)_usl_bw_1.tex
 	mv $(TEMP_PREFIX)_usl_bw_1.pdf $@
-	rm -f $(TEMP_PREFIX)*_usl_bw_1.* texput.log
+	#rm -f $(TEMP_PREFIX)*_usl_bw_1.* texput.log
 
 $(GUIDE_ID)_usl_bw_2.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_usl_bw_2.md
@@ -180,7 +180,7 @@ $(GUIDE_ID)_usl_bw_2.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_usl_bw_2.tex
 	xelatex $(TEMP_PREFIX)_usl_bw_2.tex
 	mv $(TEMP_PREFIX)_usl_bw_2.pdf $@
-	rm -f $(TEMP_PREFIX)*_usl_bw_2.* texput.log
+	#rm -f $(TEMP_PREFIX)*_usl_bw_2.* texput.log
 
 $(GUIDE_ID)_a4_bw_1.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_a4_bw_1.md
@@ -190,7 +190,7 @@ $(GUIDE_ID)_a4_bw_1.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_a4_bw_1.tex
 	xelatex $(TEMP_PREFIX)_a4_bw_1.tex
 	mv $(TEMP_PREFIX)_a4_bw_1.pdf $@
-	rm -f $(TEMP_PREFIX)*_a4_bw_1.* texput.log
+	#rm -f $(TEMP_PREFIX)*_a4_bw_1.* texput.log
 
 $(GUIDE_ID)_a4_bw_2.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_a4_bw_2.md
@@ -200,7 +200,7 @@ $(GUIDE_ID)_a4_bw_2.pdf: $(GUIDE_MD)
 	xelatex $(TEMP_PREFIX)_a4_bw_2.tex
 	xelatex $(TEMP_PREFIX)_a4_bw_2.tex
 	mv $(TEMP_PREFIX)_a4_bw_2.pdf $@
-	rm -f $(TEMP_PREFIX)*_a4_bw_2.* texput.log
+	#rm -f $(TEMP_PREFIX)*_a4_bw_2.* texput.log
 
 $(TEMP_PREFIX)_lulu.md: $(GUIDE_MD)
 	$(PREPROC) $^ $@
@@ -212,7 +212,7 @@ $(GUIDE_ID)_lulu.pdf: $(TEMP_PREFIX)_lulu.md
 	xelatex $(TEMP_PREFIX)_lulu.tex
 	xelatex $(TEMP_PREFIX)_lulu.tex
 	mv $(TEMP_PREFIX)_lulu.pdf $@
-	rm -f $(TEMP_PREFIX)*_lulu.* texput.log
+	#rm -f $(TEMP_PREFIX)*_lulu.* texput.log
 
 $(TEMP_PREFIX)_amazon.md: $(GUIDE_MD)
 	$(PREPROC) $^ $@
@@ -224,7 +224,7 @@ $(GUIDE_ID)_amazon.pdf: $(TEMP_PREFIX)_amazon.md
 	xelatex $(TEMP_PREFIX)_amazon.tex
 	xelatex $(TEMP_PREFIX)_amazon.tex
 	mv $(TEMP_PREFIX)_amazon.pdf $@
-	rm -f $(TEMP_PREFIX)*_amazon.* texput.log
+	#rm -f $(TEMP_PREFIX)*_amazon.* texput.log
 
 clean:
 	rm -f $(GUIDE_ID)_temp* $(GUIDE_ID)_quick.pdf bg-css*.html
