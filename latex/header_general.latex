@@ -61,7 +61,7 @@
 \usepackage{soul}
 \usepackage{xcolor}
 
-\definecolor{codecolor}{rgb}{0.8,0.8,0.8}
+\definecolor{codecolor}{rgb}{0.9,0.9,0.9}
 \sethlcolor{codecolor}
 
 
