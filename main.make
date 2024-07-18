@@ -14,7 +14,7 @@ BUILDTMP=./build_tmp
 BGBS_THREADS?=8
 MAKE_THREADS=-j $(BGBS_THREADS)
 
-.PHONY: all upload fastupload pristine clean
+.PHONY: help all upload fastupload pristine clean
 
 BOLD=$(shell tput bold)
 RESET=$(shell tput sgr0)

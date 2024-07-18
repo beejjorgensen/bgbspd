@@ -78,6 +78,33 @@ BLANKLAST=-A $(BGBSPD_BUILD_DIR)/latex/after_blank.latex # add a blank last page
 BW=--no-highlight  # black and white options
 COLOR=--highlight-style=tango   # color options
 
+BOLD=$(shell tput bold)
+RESET=$(shell tput sgr0)
+
+help:
+	@echo
+	@echo "    $(BOLD)all$(RESET)          build everything"
+	@echo "    $(BOLD)clean$(RESET)        remove temporary build products"
+	@echo "    $(BOLD)pristine$(RESET)     remove all build products"
+	@echo
+	@echo "  Specific targets:"
+	@echo
+	@echo "    $(GUIDE_ID).html"
+	@echo "    $(GUIDE_ID)-wide.html"
+	@echo "    split/index.html"
+	@echo "    split-wide/index.html"
+	@echo "    $(GUIDE_ID)_usl_c_1.pdf"
+	@echo "    $(GUIDE_ID)_usl_c_2.pdf"
+	@echo "    $(GUIDE_ID)_usl_bw_1.pdf"
+	@echo "    $(GUIDE_ID)_usl_bw_2.pdf"
+	@echo "    $(GUIDE_ID)_a4_c_1.pdf"
+	@echo "    $(GUIDE_ID)_a4_c_2.pdf"
+	@echo "    $(GUIDE_ID)_a4_bw_1.pdf"
+	@echo "    $(GUIDE_ID)_a4_bw_2.pdf"
+	@echo "    $(GUIDE_ID)_amazon.pdf"
+	@echo "    $(GUIDE_ID)_lulu.pdf"
+	@echo
+
 all: $(HTML) split/index.html split-wide/index.html $(BOOKS)
 
 bg-css.html: $(BGBSPD_BUILD_DIR)/html/common-css-src.html
@@ -235,4 +262,4 @@ pristine: clean
 	rm -rf $(SPLIT_DIRS)
 	rm -f $(GUIDE_ID)_lulu.pdf $(GUIDE_ID)_amazon.pdf
 
-.PHONY: all, html, clean, pristine
+.PHONY: help all html clean pristine
