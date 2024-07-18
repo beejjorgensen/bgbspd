@@ -11,7 +11,8 @@
 #    WEB_IMAGES=$(wildcard img_*svg)
 #
 #    include $(BGBSPD_BUILD_DIR)/source.make
-#
+
+export GUIDE_ID
 
 PDF_MAINFONT="Liberation Serif"
 PDF_SANSFONT="Liberation Sans"

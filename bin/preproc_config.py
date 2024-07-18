@@ -1,5 +1,7 @@
-EXAMPLE_URL = "https://beej.us/guide/bgnet0/source/examples/"
-EXERCISE_URL = "https://beej.us/guide/bgnet0/source/exercises/"
+import os
+
+EXAMPLE_URL = f"https://beej.us/guide/{os.environ['GUIDE_ID']}/source/examples/"
+EXERCISE_URL = f"https://beej.us/guide/{os.environ['GUIDE_ID']}/source/exercises/"
 WIKIPEDIA_URL = "https://en.wikipedia.org/wiki/"
 MAN_URL = "https://man.archlinux.org/man/"
 
