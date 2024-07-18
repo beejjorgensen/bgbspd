@@ -30,7 +30,7 @@ help:
 	@echo
 
 all:
-	$(MAKE) $(MAKE_THREADS) -C src
+	$(MAKE) $(MAKE_THREADS) -C src all
 	$(MAKE) -C source clean
 
 .PHONY: stage_build stage stage_html stage_translations stage_html_zips
