@@ -16,6 +16,19 @@ MAKE_THREADS=-j $(BGBS_THREADS)
 
 .PHONY: all upload fastupload pristine clean
 
+BOLD=$(shell tput bold)
+RESET=$(shell tput sgr0)
+
+help:
+	@echo
+	@echo "    $(BOLD)all$(RESET)          build everything"
+	@echo "    $(BOLD)stage$(RESET)        copy everything to the staging area"
+	@echo "    $(BOLD)clean$(RESET)        remove temporary build products"
+	@echo "    $(BOLD)pristine$(RESET)     remove all build products"
+	@echo "    $(BOLD)upload$(RESET)       pristine, all, stage, then upload results"
+	@echo "    $(BOLD)fastupload$(RESET)   all, stage, then upload results"
+	@echo
+
 all:
 	$(MAKE) $(MAKE_THREADS) -C src
 	$(MAKE) -C source clean
