@@ -79,3 +79,18 @@
   {}% Do nothing if 'Shaded' is not defined
   {\RenewDocumentEnvironment{Shaded}{}{}{}}% Redefine 'Shaded' to do nothing
 \makeatother
+
+%-------------------------------------------------------------
+% Blank page after title page in twoside
+%-------------------------------------------------------------
+\usepackage{etoolbox}
+\makeatletter
+\if@twoside%
+    \newcommand{\blankaftertitle}{\clearpage\thispagestyle{empty}\null\newpage}
+\else%
+    \newcommand{\blankaftertitle}{}
+\fi%
+\makeatother
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{\oldmaketitle\blankaftertitle}
+
