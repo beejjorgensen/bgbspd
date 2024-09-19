@@ -91,6 +91,11 @@ figcaption::before {
     content: "Figure " counter(figure-counter-major) "." counter(figure-counter-minor) ": ";
 }
 
+blockquote {
+    border-left: 2px solid #bbb;
+    color: #444;
+}
+
 /*
 In multipage, we need to reset the figure counter to the chapter
 number. Luckily, this is in the <h1 data-number> attribute. Unluckily,
