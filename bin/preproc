@@ -300,7 +300,7 @@ def main():
         if re.search(r'<!-- *BG_NEW_CHAPTER *-->', line):
             chapter_num += 1
 
-        line = re.sub(r'Figure_#', f'Figure {chapter_num}', line, re.DOTALL)
+        line = re.sub(r'Figure_#', f'Figure {chapter_num}', line, flags=re.DOTALL)
 
         fout.write(line)
 
