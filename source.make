@@ -118,6 +118,7 @@ $(GUIDE_ID).html: $(GUIDE_MD) bg-css.html
 	pandoc $(HTML_OPTS) -s $(PREPROC_TEMP_PREFIX)_html.md -o $@ -H bg-css.html
 	sed 's/src="\(.*\)\.pdf"/src="\1.svg"/g' $@ > $(TEMP_PREFIX)_html.html # use svg images
 	mv $(TEMP_PREFIX)_html.html $@
+	sed -i '/\/polyfill.io\//d' $@   # Strip polyfill.io
 	#rm -f $(TEMP_PREFIX)*_html.* texput.log
 
 $(GUIDE_ID)-wide.html: $(GUIDE_MD) bg-css-wide.html
@@ -125,6 +126,7 @@ $(GUIDE_ID)-wide.html: $(GUIDE_MD) bg-css-wide.html
 	pandoc $(HTML_OPTS) -s $(PREPROC_TEMP_PREFIX)_html_wide.md -o $@ -H bg-css-wide.html
 	sed 's/src="\(.*\)\.pdf"/src="\1.svg"/g' $@ > $(TEMP_PREFIX)_html_wide.html # use svg images
 	mv $(TEMP_PREFIX)_html_wide.html $@
+	sed -i '/\/polyfill.io\//d' $@   # Strip polyfill.io
 	#rm -f $(TEMP_PREFIX)*_html_wide.* texput.log
 
 split/index.html: $(GUIDE_ID).html
