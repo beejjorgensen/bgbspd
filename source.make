@@ -81,6 +81,8 @@ COLOR=--highlight-style=tango   # color options
 BOLD=$(shell tput bold)
 RESET=$(shell tput sgr0)
 
+EPUB_IMAGES=$(WEB_IMAGES:.svg=.png)
+
 help:
 	@echo
 	@echo "    $(BOLD)all$(RESET)          build everything"
@@ -143,9 +145,10 @@ ifdef WEB_IMAGES
 	cp -v $(WEB_IMAGES) split-wide
 endif
 
-$(GUIDE_ID).epub: $(GUIDE_MD)
-	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_epub.md
-	pandoc $(COMMON_OPTS) --webtex --metadata author=$(AUTHOR) --metadata title=$(TITLE) -o $@ $(PREPROC_TEMP_PREFIX)_epub.md
+$(GUIDE_ID).epub: $(GUIDE_MD) $(EPUB_IMAGES)
+	$(PREPROC) --epub $(GUIDE_MD) $(PREPROC_TEMP_PREFIX)_epub.md
+	sed 's/\(!\[.*\](.*\.\)pdf/\1png/' $(PREPROC_TEMP_PREFIX)_epub.md > $(PREPROC_TEMP_PREFIX)_epub_png.md
+	pandoc $(COMMON_OPTS) --css $(BGBSPD_BUILD_DIR)/epub/epub.css --webtex --metadata author=$(AUTHOR) --metadata title=$(TITLE) -o $@ $(PREPROC_TEMP_PREFIX)_epub_png.md
 
 $(GUIDE_ID)_quick.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_quick.md
@@ -258,11 +261,15 @@ $(GUIDE_ID)_amazon.pdf: $(TEMP_PREFIX)_amazon.md
 	mv $(TEMP_PREFIX)_amazon.pdf $@
 	#rm -f $(TEMP_PREFIX)*_amazon.* texput.log
 
+%.png: %.svg
+	magick $< $@
+
 clean:
 	rm -f $(GUIDE_ID)_temp* $(GUIDE_ID)_quick.pdf bg-css*.html
 
 pristine: clean
 	rm -f $(HTML) $(BOOKS)
+	rm -f $(EPUB_IMAGES) $(GUIDE_ID).epub
 	rm -rf $(SPLIT_DIRS)
 	rm -f $(GUIDE_ID)_lulu.pdf $(GUIDE_ID)_amazon.pdf
 
