@@ -148,7 +148,7 @@ endif
 $(GUIDE_ID).epub: $(GUIDE_MD) $(EPUB_IMAGES)
 	$(PREPROC) --epub $(GUIDE_MD) $(PREPROC_TEMP_PREFIX)_epub.md
 	sed 's/\(!\[.*\](.*\.\)pdf/\1png/' $(PREPROC_TEMP_PREFIX)_epub.md > $(PREPROC_TEMP_PREFIX)_epub_png.md
-	pandoc $(COMMON_OPTS) --css $(BGBSPD_BUILD_DIR)/epub/epub.css --webtex --metadata author=$(AUTHOR) --metadata title=$(TITLE) -o $@ $(PREPROC_TEMP_PREFIX)_epub_png.md
+	pandoc $(COMMON_OPTS) $(BW) --css $(BGBSPD_BUILD_DIR)/epub/epub.css --webtex --metadata author=$(AUTHOR) --metadata title=$(TITLE) -o $@ $(PREPROC_TEMP_PREFIX)_epub_png.md
 
 $(GUIDE_ID)_quick.pdf: $(GUIDE_MD)
 	$(PREPROC) $^ $(PREPROC_TEMP_PREFIX)_quick.md
