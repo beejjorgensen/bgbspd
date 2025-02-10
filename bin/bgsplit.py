@@ -255,7 +255,7 @@ class SplitHTMLParser(HTMLParser):
             file = ""
             span_style = ' style="visibility: hidden"'
 
-        html += f'<span{span_style}><a href="{file}">Prev</a> | </span>'
+        html += f'<span{span_style}><a href="{file}" rel="prev">Prev</a> | </span>'
 
         html += f'<a href="index.html">Contents</a>'
 
@@ -266,7 +266,7 @@ class SplitHTMLParser(HTMLParser):
             file = ""
             span_style = ' style="visibility: hidden"'
 
-        html += f'<span{span_style}> | <a href="{file}">Next</a></span>'
+        html += f'<span{span_style}> | <a href="{file}" rel="next">Next</a></span>'
 
         html += "</div>"
 
