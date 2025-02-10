@@ -269,7 +269,8 @@ clean:
 
 pristine: clean
 	rm -f $(HTML) $(BOOKS)
-	rm -f $(EPUB_IMAGES) $(GUIDE_ID).epub
+	#rm -f $(EPUB_IMAGES) $(GUIDE_ID).epub # Need to fix this
+	rm -f $(GUIDE_ID).epub
 	rm -rf $(SPLIT_DIRS)
 	rm -f $(GUIDE_ID)_lulu.pdf $(GUIDE_ID)_amazon.pdf
 
