@@ -216,12 +216,14 @@ q {
 */
 
 figure {
-  display: block;
-  text-align: center;
+    display: block;
+    text-align: center;
 }
 
 figcaption {
-  font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
+    text-align: center;
 }
 
 pre {
