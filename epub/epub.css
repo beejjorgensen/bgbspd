@@ -232,3 +232,8 @@ pre {
   page-break-inside: auto;
   break-inside: auto;
 }
+
+code {
+  /* I know this isn't monospace, but it works better on EPUB */
+  font-family: monospace, sans-serif;
+}

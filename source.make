@@ -9,6 +9,7 @@
 #    BGBSPD_BUILD_DIR?=../../bgbspd
 #
 #    WEB_IMAGES=$(wildcard img_*svg)
+#    EPUB_SVGS=$(wildcard img_*svg)
 #
 #    include $(BGBSPD_BUILD_DIR)/source.make
 
@@ -81,7 +82,7 @@ COLOR=--highlight-style=tango   # color options
 BOLD=$(shell tput bold)
 RESET=$(shell tput sgr0)
 
-EPUB_IMAGES=$(WEB_IMAGES:.svg=.png)
+EPUB_PNGS=$(EPUB_SVGS:.svg=.png)
 
 help:
 	@echo
@@ -145,7 +146,7 @@ ifdef WEB_IMAGES
 	cp -v $(WEB_IMAGES) split-wide
 endif
 
-$(GUIDE_ID).epub: $(GUIDE_MD) $(EPUB_IMAGES)
+$(GUIDE_ID).epub: $(GUIDE_MD) $(EPUB_PNGS)
 	$(PREPROC) --epub $(GUIDE_MD) $(PREPROC_TEMP_PREFIX)_epub.md
 	sed 's/\(!\[.*\](.*\.\)pdf/\1png/' $(PREPROC_TEMP_PREFIX)_epub.md > $(PREPROC_TEMP_PREFIX)_epub_png.md
 	pandoc $(COMMON_OPTS) $(BW) --css $(BGBSPD_BUILD_DIR)/epub/epub.css --webtex --metadata author=$(AUTHOR) --metadata title=$(TITLE) -o $@ $(PREPROC_TEMP_PREFIX)_epub_png.md
@@ -262,15 +263,14 @@ $(GUIDE_ID)_amazon.pdf: $(TEMP_PREFIX)_amazon.md
 	#rm -f $(TEMP_PREFIX)*_amazon.* texput.log
 
 %.png: %.svg
-	magick $< $@
+	magick -density 96 $< $@
 
 clean:
 	rm -f $(GUIDE_ID)_temp* $(GUIDE_ID)_quick.pdf bg-css*.html
 
 pristine: clean
 	rm -f $(HTML) $(BOOKS)
-	#rm -f $(EPUB_IMAGES) $(GUIDE_ID).epub # Need to fix this
-	rm -f $(GUIDE_ID).epub
+	rm -f $(EPUB_PNGS) $(GUIDE_ID).epub
 	rm -rf $(SPLIT_DIRS)
 	rm -f $(GUIDE_ID)_lulu.pdf $(GUIDE_ID)_amazon.pdf
 
