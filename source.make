@@ -13,6 +13,31 @@
 #
 #    include $(BGBSPD_BUILD_DIR)/source.make
 
+# HALF_LETTER conversion to booklet:
+#
+# pdfjam input.pdf \
+#     --booklet true \
+#     --paper letter \
+#     --landscape \
+#     --longedge \
+#     --outfile booklet.pdf
+#
+# If you don't have a two-sided printer:
+#
+# pdftk A=booklet.pdf cat Aodd output odd.pdf
+# pdftk A=booklet.pdf cat Aeven output even.pdf
+#
+# If you reverse the odds and evens before printing, I think that saves
+# you recollating them.
+#
+# pdftk A=odd.pdf cat end-1 output oddr.pdf
+# pdftk A=even.pdf cat end-1 output evenr.pdf
+#
+# 20 pages max per signature, really. More is hard to staple, fold, and
+# handle.
+#
+# Consider trimming the thumb edge.
+
 export GUIDE_ID
 
 PDF_MAINFONT="Liberation Serif"
@@ -75,6 +100,7 @@ CROWNQUARTO=--variable geometry:"paperwidth=7.444in,paperheight=9.681in,top=1in,
 CROWNQUARTO_AMAZON=--variable geometry:"paperwidth=7.444in,paperheight=9.681in,top=1in,bottom=1in,left=1.25in,right=1.25in" # Amazon
 #SIZE_75x925_AMAZON=--variable geometry:"paperwidth=7.5in,paperheight=9.25in,top=1in,bottom=1in,left=1.125in,right=1.375in" # Amazon 7.5" x 9.25", margins too far inside
 SIZE_75x925_AMAZON=--variable geometry:"paperwidth=7.5in,paperheight=9.25in,top=1in,bottom=1in,left=1.25in,right=1.25in" # Amazon 7.5" x 9.25"
+SIZE_HALF_LETTER=--variable geometry:"paperwidth=139.5mm,paperheight=216mm,top=2cm,bottom=2cm,left=1.5cm,right=1.5cm" # Half a US letter
 BLANKLAST=-A $(BGBSPD_BUILD_DIR)/latex/after_blank.latex # add a blank last page
 BW=--no-highlight  # black and white options
 COLOR=--highlight-style=tango   # color options
@@ -261,6 +287,18 @@ $(GUIDE_ID)_amazon.pdf: $(TEMP_PREFIX)_amazon.md
 	xelatex $(TEMP_PREFIX)_amazon.tex
 	mv $(TEMP_PREFIX)_amazon.pdf $@
 	#rm -f $(TEMP_PREFIX)*_amazon.* texput.log
+
+$(TEMP_PREFIX)_halfletter.md: $(GUIDE_MD)
+	$(PREPROC) $^ $@
+
+$(GUIDE_ID)_halfletter.pdf: $(TEMP_PREFIX)_halfletter.md
+	pandoc $(PDF_OPTS) $(TWOSIDE) $(SIZE_HALF_LETTER) $(BLANKLAST) $(COLOR) -o $(TEMP_PREFIX)_halfletter.tex $<
+	xelatex $(TEMP_PREFIX)_halfletter.tex
+	makeindex $(TEMP_PREFIX)_halfletter.idx
+	xelatex $(TEMP_PREFIX)_halfletter.tex
+	xelatex $(TEMP_PREFIX)_halfletter.tex
+	mv $(TEMP_PREFIX)_halfletter.pdf $@
+	#rm -f $(TEMP_PREFIX)*_halfletter.* texput.log
 
 %.png: %.svg
 	magick -density 96 $< $@
