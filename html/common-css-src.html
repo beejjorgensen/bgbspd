@@ -101,6 +101,21 @@ blockquote {
     color: #444;
 }
 
+/* Contents */
+nav[role="doc-toc"] > ul > li {
+  font-weight: bold;
+  margin-top: 1.2em;
+}
+
+nav[role="doc-toc"] > ul > li:first {
+  font-weight: bold;
+  margin-top: initial;
+}
+
+nav[role="doc-toc"] > ul > li > ul {
+  font-weight: normal;
+}
+
 /*
 In multipage, we need to reset the figure counter to the chapter
 number. Luckily, this is in the <h1 data-number> attribute. Unluckily,
