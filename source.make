@@ -136,10 +136,10 @@ help:
 
 all: $(HTML) split/index.html split-wide/index.html $(BOOKS)
 
-bg-css.html: $(BGBSPD_BUILD_DIR)/html/common-css-src.html
+bg-css.html: $(BGBSPD_BUILD_DIR)/html/lightdark.html $(BGBSPD_BUILD_DIR)/html/common-css-src.html
 	cat $^ > $@
 
-bg-css-wide.html: $(BGBSPD_BUILD_DIR)/html/common-css-src.html $(BGBSPD_BUILD_DIR)/html/widescreen-css-src.html
+bg-css-wide.html: $(BGBSPD_BUILD_DIR)/html/lightdark.html $(BGBSPD_BUILD_DIR)/html/common-css-src.html $(BGBSPD_BUILD_DIR)/html/widescreen-css-src.html
 	cat $^ > $@
 
 $(GUIDE_ID).html: $(GUIDE_MD) bg-css.html
