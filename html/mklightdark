@@ -7,8 +7,8 @@ makehtml() {
     local theme="$1"
     local themename="$2"
 
-    echo '```c\nint main(){}\n```' | \
-        pandoc --highlight-style=${themename} -s | \
+    printf '``` {.c}\nint main(){}\n```' | \
+        pandoc --metadata title=${theme} --highlight-style=${themename} -s | \
         sed -n '/<style>/,/<\/style>/p' | \
         sed '/<style>/a\
    @media (prefers-color-scheme: '$theme') {
@@ -25,8 +25,8 @@ cat<<'_EOF_'
   <style>
    @media (prefers-color-scheme: dark) {
     html {
-      color: #abb2bf;
-      background-color: #282c34;
+      color: #ddd;
+      background-color: #151515;
     }
     a {
       color: #abb2bf;
