@@ -40,9 +40,12 @@
 
 export GUIDE_ID
 
-PDF_MAINFONT="Liberation Serif"
-PDF_SANSFONT="Liberation Sans"
-PDF_MONOFONT="Liberation Mono"
+PDF_MAINFONT="IBM Plex Serif Text"
+PDF_SANSFONT="IBM Plex Sans Text"
+PDF_MONOFONT="IBM Plex Mono Text"
+#PDF_MAINFONT="Liberation Serif"
+#PDF_SANSFONT="Liberation Sans"
+#PDF_MONOFONT="Liberation Mono"
 #PDF_MAINFONT="DejaVu Serif"
 #PDF_SANSFONT="DejaVu Sans"
 #PDF_MONOFONT="DejaVu Sans Mono"
