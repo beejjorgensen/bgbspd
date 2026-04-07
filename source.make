@@ -50,6 +50,8 @@ PDF_MONOFONT="IBM Plex Mono Text"
 #PDF_SANSFONT="DejaVu Sans"
 #PDF_MONOFONT="DejaVu Sans Mono"
 
+PDF_FONTSIZE="10pt"
+
 USLETTER_COLOR=$(GUIDE_ID)_usl_c_1.pdf $(GUIDE_ID)_usl_c_2.pdf
 USLETTER_BW=$(GUIDE_ID)_usl_bw_1.pdf $(GUIDE_ID)_usl_bw_2.pdf
 A4_COLOR=$(GUIDE_ID)_a4_c_1.pdf $(GUIDE_ID)_a4_c_2.pdf
@@ -83,6 +85,7 @@ PDF_OPTS= \
 	--variable mainfont=$(PDF_MAINFONT) \
 	--variable sansfont=$(PDF_SANSFONT) \
 	--variable monofont=$(PDF_MONOFONT) \
+	--variable fontsize=$(PDF_FONTSIZE) \
 	--variable geometry:"top=1in,bottom=1in" \
 	-V documentclass=book \
 	--lua-filter $(BGBSPD_BUILD_DIR)/lua/latex_filters.lua \
