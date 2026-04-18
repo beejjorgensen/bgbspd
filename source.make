@@ -40,15 +40,18 @@
 
 export GUIDE_ID
 
-PDF_MAINFONT="IBM Plex Serif Text"
-PDF_SANSFONT="IBM Plex Sans Text"
-PDF_MONOFONT="IBM Plex Mono Text"
+PDF_MAINFONT="Libertinus Serif"
+PDF_SANSFONT="Libertinus Sans"
+#PDF_MONOFONT="Libertinus Mono"
+#PDF_MAINFONT="IBM Plex Serif Text"
+#PDF_SANSFONT="IBM Plex Sans Text"
+#PDF_MONOFONT="IBM Plex Mono Text"
 #PDF_MAINFONT="Liberation Serif"
 #PDF_SANSFONT="Liberation Sans"
 #PDF_MONOFONT="Liberation Mono"
 #PDF_MAINFONT="DejaVu Serif"
 #PDF_SANSFONT="DejaVu Sans"
-#PDF_MONOFONT="DejaVu Sans Mono"
+PDF_MONOFONT="DejaVu Sans Mono"
 
 USLETTER_COLOR=$(GUIDE_ID)_usl_c_1.pdf $(GUIDE_ID)_usl_c_2.pdf
 USLETTER_BW=$(GUIDE_ID)_usl_bw_1.pdf $(GUIDE_ID)_usl_bw_2.pdf
