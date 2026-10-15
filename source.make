@@ -116,6 +116,8 @@ RESET=$(shell tput sgr0)
 
 EPUB_PNGS=$(EPUB_SVGS:.svg=.png)
 
+BOOK_MANBREAK?=page  # override before including with BOOK_MANBREAK=rule
+
 help:
 	@echo
 	@echo "    $(BOLD)all$(RESET)          build everything"
@@ -283,7 +285,7 @@ $(GUIDE_ID)_lulu.pdf: $(TEMP_PREFIX)_lulu.md
 	#rm -f $(TEMP_PREFIX)*_lulu.* texput.log
 
 $(TEMP_PREFIX)_amazon.md: $(GUIDE_MD)
-	$(PREPROC) $^ $@
+	$(PREPROC) --book --manbreak $(BOOK_MANBREAK) $^ $@
 
 $(GUIDE_ID)_amazon.pdf: $(TEMP_PREFIX)_amazon.md
 	pandoc $(PDF_OPTS) $(TWOSIDE) $(SIZE_75x925_AMAZON) $(BLANKLAST) $(COLOR) -o $(TEMP_PREFIX)_amazon.tex $<

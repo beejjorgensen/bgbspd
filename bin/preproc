@@ -71,7 +71,7 @@ def parse_cl():
             if args[0] == '--book' or args[0] == '-b':
                 options["book"] = True
 
-            if args[0] == '--epub':
+            elif args[0] == '--epub':
                 options["epub"] = True
 
             elif args[0] == '--manbreak':
